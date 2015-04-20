@@ -1,0 +1,12 @@
+<!--  app/views/todos/new.html.erb -->
+
+<ul class="nav nav-tabs" role="tablist">
+  <li><%= link_to 'View list', events_path %></li>
+  <li class="active"><%= link_to 'New event', new_event_path %></li>
+</ul>
+
+<h1>New event</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', events_path %>
