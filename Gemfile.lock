@@ -42,14 +42,9 @@ GEM
       json
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-<<<<<<< HEAD
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
-=======
-    bootstrap-sass (3.2.0.2)
-      sass (~> 3.2)
->>>>>>> feature/dashboard_begin
     bson (2.3.0)
     builder (3.2.2)
     byebug (4.0.5)
@@ -177,9 +172,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (~> 3.3.4.1)
   autoprefixer-rails
-  bootstrap-sass (~> 3.2.0)
+  bootstrap-sass (~> 3.3.4.1)
   byebug
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
