@@ -84,6 +84,8 @@ GEM
       tzinfo (>= 0.3.37)
     mongoid-paperclip (0.0.9)
       paperclip (>= 2.3.6)
+    mongoid-sadstory (0.0.2)
+      mongoid
     moped (2.0.4)
       bson (~> 2.2)
       connection_pool (~> 2.0)
@@ -170,6 +172,7 @@ DEPENDENCIES
   jquery-rails
   mongoid (~> 4.0.0)
   mongoid-paperclip
+  mongoid-sadstory
   rails (= 4.2.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

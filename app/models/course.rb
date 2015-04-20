@@ -2,6 +2,8 @@ class Course
   include Mongoid::Document
   include Mongoid::Paperclip
 
+  has_many :course_days
+
   field :name, type: String
   field :description, type: String
 
