@@ -1,10 +1,19 @@
 <!-- app/views/shared/_navigation.html.erb -->
 
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">DASHBOARD</a>
-      <%= link_to courses_path %>
+      <a class="navbar-brand">IOSportClub</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Courses', courses_path %></li>
+        <li><%= link_to 'Events', events_path %></li>
+        <li><%= link_to 'Warehouse', items_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      </ul>
     </div>
   </div>
 </nav>

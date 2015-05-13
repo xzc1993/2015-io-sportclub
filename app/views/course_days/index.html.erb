@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Course</th>
+      <th>CourseID</th>
       <th>Date</th>
       <th>Time begin</th>
       <th>Time end</th>
@@ -16,13 +16,13 @@
   <tbody>
     <% @course_days.each do |course_day| %>
       <tr>
-        <td><%= link_to course_day.course.id, course_day.course %></td>
+        <td><%= link_to course_day.course.name, course_day.course %></td>
         <td><%= course_day.date %></td>
         <td><%= course_day.time_begin %></td>
         <td><%= course_day.time_end %></td>
-        <td><%= link_to 'Show', course_day %></td>
-        <td><%= link_to 'Edit', edit_course_day_path(course_day) %></td>
-        <td><%= link_to 'Destroy', course_day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', course_course_day_path(course_day.course.id, course_day) %></td>
+        <td><%= link_to 'Edit', edit_course_course_day_path(course_day.course.id, course_day) %></td>
+        <td><%= link_to 'Destroy', [course_day.course, course_day], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,3 @@
 
 <br>
 
-<%= link_to 'New Course day', new_course_day_path %>

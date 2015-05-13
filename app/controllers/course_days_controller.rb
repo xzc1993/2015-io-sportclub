@@ -1,10 +1,11 @@
 class CourseDaysController < ApplicationController
-  before_action :set_course_day, only: [:show, :edit, :update, :destroy]
+  before_action :set_course_day, only: [:show, :update, :destroy]
 
   # GET /course_days
   # GET /course_days.json
   def index
-    @course_days = CourseDay.all
+    #@course = Course.find(params[:course_id])
+    @course_days = Course.find(params[:course_id]).course_days
   end
 
   # GET /course_days/1
@@ -15,20 +16,24 @@ class CourseDaysController < ApplicationController
   # GET /course_days/new
   def new
     @course_day = CourseDay.new
+    @course = Course.find(params[:course_id])
   end
 
   # GET /course_days/1/edit
   def edit
+    @course_day = CourseDay.find(params[:id])
+    @course = Course.find(params[:course_id])
   end
 
   # POST /course_days
   # POST /course_days.json
   def create
     @course_day = CourseDay.new(course_day_params)
+    @course = Course.find(params[:course_id])
 
     respond_to do |format|
       if @course_day.save
-        format.html { redirect_to @course_day, notice: 'Course day was successfully created.' }
+        format.html { redirect_to @course, notice: 'Course day was successfully created.' }
         format.json { render :show, status: :created, location: @course_day }
       else
         format.html { render :new }
@@ -54,9 +59,10 @@ class CourseDaysController < ApplicationController
   # DELETE /course_days/1
   # DELETE /course_days/1.json
   def destroy
+    course = @course_day.course
     @course_day.destroy
     respond_to do |format|
-      format.html { redirect_to course_days_url, notice: 'Course day was successfully destroyed.' }
+      format.html { redirect_to course, notice: 'Course day was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

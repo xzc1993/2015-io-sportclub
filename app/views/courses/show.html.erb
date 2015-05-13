@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<% if !@course.photo.nil? %>
 <p>
   <strong>Photo</strong>
   <%= image_tag @course.photo.url(:large) %>
 </p>
-
+<% end %>
 <p>
   <strong>Name:</strong>
   <%= @course.name %>
@@ -16,4 +17,5 @@
 </p>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<%= link_to 'Back', courses_path %> |
+<%= link_to 'Add new course day', new_course_course_day_path(@course) %>
