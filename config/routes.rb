@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'calendar/index'
+
   resources :courses do
     resources :course_days
   end
@@ -12,5 +14,8 @@ Rails.application.routes.draw do
 
   resources :user
   resources :session
+
+get 'calendar', to: 'calendar#show'
+
 
 end
