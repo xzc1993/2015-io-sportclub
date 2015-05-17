@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   end
 
   resources :items
-  resources :events
+  resources :events do
+  	resources :events_days
+  end
+  
   root 'events#index'
 
   get 'sessions/new'
