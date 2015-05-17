@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<h1><%= @course.name %></h1>
+<h2><%= @course_event.title %></h2>
+
+<h3>Event days:</h3>
+  <% if @course_event.course_days.blank? %>
+      No course event days.
+  <% else %>
+    <table>
+      <thead>
+      <tr>
+        <th width="25%">Date</th>
+        <th width="70%" colspan="2">Time</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @course_event.course_days.each do |course_day| %>
+          <tr>
+            <td><%= course_day.date %></td>
+            <td><%= course_day.time_begin %></td>
+            <td><%= course_day.time_end %></td>
+            <td><%= link_to 'Edit', edit_course_course_event_course_day_path(@course, @course_event, course_day) %></td>
+            <td><%= link_to 'Destroy', [@course, @course_event, course_day], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+</p>
+
+<%= link_to 'New Course event day', new_course_course_event_course_day_path(@course, @course_event) %><br>
+<%= link_to 'Edit', edit_course_course_event_path(@course, @course_event) %>
