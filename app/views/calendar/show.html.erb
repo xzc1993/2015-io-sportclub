@@ -63,8 +63,10 @@
     <% @courses.each do |course| %>
       <tr>
         <td><%= course.name %></td>
-            <% course.course_days.each do |day| %>
-                    <td><%= day.date %></td>
+            <% course.course_events.each do |event| %>
+                <% event.course_days.each do |day| %>
+                        <td><%= day.date %></td>
+                <% end %>
             <% end %>
       </tr>
     <% end %>
