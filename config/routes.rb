@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  resources :user
+  resources :users
   resources :session
 
 get 'calendar', to: 'calendar#show'

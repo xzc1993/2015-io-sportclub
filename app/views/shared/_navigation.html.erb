@@ -14,6 +14,13 @@
         <li><%= link_to 'Calendar', calendar_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <% if logged_in? %>
+          <%= link_to current_user.username + " Log out", '/session/destroy', method: "delete" %>
+          <% else %>
+          <%= link_to "Log in", '/session/new', method: "get" %>  
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
