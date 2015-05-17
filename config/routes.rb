@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :items
   resources :events do
-  	resources :events_days
+  	resources :event_days
   end
   
   root 'events#index'
