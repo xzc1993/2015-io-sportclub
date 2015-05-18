@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  resources :user
+  resources :users
   resources :session
 
 end
