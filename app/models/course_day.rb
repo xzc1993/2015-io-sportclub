@@ -5,6 +5,6 @@ class CourseDay
   field :time_begin, type: Time
   field :time_end, type: Time
 
-  belongs_to :course
-  validates :course, :presence => true
+  belongs_to :course_event
+  validates :course_event, :presence => true
 end

@@ -1,4 +1,6 @@
 class CourseDaysController < ApplicationController
+  before_action :set_course
+  before_action :set_course_event
   before_action :set_course_day, only: [:show, :update, :destroy]
 
   # GET /course_days
@@ -29,11 +31,10 @@ class CourseDaysController < ApplicationController
   # POST /course_days.json
   def create
     @course_day = CourseDay.new(course_day_params)
-    @course = Course.find(params[:course_id])
 
     respond_to do |format|
       if @course_day.save
-        format.html { redirect_to @course, notice: 'Course day was successfully created.' }
+        format.html { redirect_to course_course_event_path(@course, @course_event), notice: 'Course day was successfully created.' }
         format.json { render :show, status: :created, location: @course_day }
       else
         format.html { render :new }
@@ -73,8 +74,18 @@ class CourseDaysController < ApplicationController
       @course_day = CourseDay.find(params[:id])
     end
 
+    def set_course_event
+      @course_event = CourseEvent.find(params[:course_event_id])
+    end
+
+    def set_course
+      @course = Course.find(params[:course_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_day_params
-      params.require(:course_day).permit(:course, :date, :time_begin, :time_end)
+      x = params.require(:course_day).permit(:date, :time_begin, :time_end)
+      x[:course_event_id] = @course_event.id
+      x
     end
 end
