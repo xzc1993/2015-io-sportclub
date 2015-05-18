@@ -54,7 +54,7 @@
     <tr>
       <th>Name</th>
       <th>Event</th>
-      <th>Day</th>
+      <th colspan="3">Day</th>
     </tr>
   </thead>
 
@@ -67,6 +67,8 @@
                 <td><%= course.name %></td>
                 <td><%= event.title %></td>
                 <td><%= day.date %></td>
+                <td><%= day.time_begin %></td>
+                <td><%= day.time_end %></td>
             <% end %>
           </tr>
   <% end %>
