@@ -1,7 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 
-<h1><%= @course.name %></h1>
+<h1>
+  <%= @course.name %>
+</h1>
+
+<p>
+  <% if signed? %>
+    You are signed up!
+  <% else %>
+    You are not signed up to this course.
+    <a href="/courses/<%= @course.id %>/sign">Sign up!</a>
+  <% end %>
+
+</p>
+
+
 <% if !@course.photo.nil? %>
 <p>
   <%= image_tag @course.photo.url(:large) %>

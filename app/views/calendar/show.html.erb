@@ -53,22 +53,26 @@
   <thead>
     <tr>
       <th>Name</th>
-          <th>Course Days</th>
-
-      <th colspan="3"></th>
+      <th>Event</th>
+      <th colspan="3">Day</th>
     </tr>
   </thead>
 
   <tbody>
     <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.name %></td>
-            <% course.course_events.each do |event| %>
-                <% event.course_days.each do |day| %>
-                        <td><%= day.date %></td>
-                <% end %>
+        <% course.course_events.each do |event| %>
+            <% event.course_days.each do |day| %>
+  <% if signed?(day) %>
+            <tr>
+                <td><%= course.name %></td>
+                <td><%= event.title %></td>
+                <td><%= day.date %></td>
+                <td><%= day.time_begin %></td>
+                <td><%= day.time_end %></td>
             <% end %>
-      </tr>
+          </tr>
+  <% end %>
+        <% end %>
     <% end %>
   </tbody>
 </table>

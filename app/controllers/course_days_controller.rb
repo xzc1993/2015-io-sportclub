@@ -1,7 +1,7 @@
 class CourseDaysController < ApplicationController
   before_action :set_course
   before_action :set_course_event
-  before_action :set_course_day, only: [:show, :update, :destroy]
+  before_action :set_course_day, only: [:show, :update, :destroy, :sign]
 
   # GET /course_days
   # GET /course_days.json
@@ -26,6 +26,60 @@ class CourseDaysController < ApplicationController
     @course_day = CourseDay.find(params[:id])
     @course = Course.find(params[:course_id])
   end
+
+
+
+  # GET /courses/1/events/2/days/3/sign
+  def sign
+    respond_to do |format|
+
+      if !logged_in?
+        format.html { redirect_to new_session_path, notice: "You must log in" }
+      elsif !signedToCourse?
+        format.html { redirect_to course_path(@course), notice: "Sign up to course first!" }
+      elsif signed?
+        format.html { redirect_to course_course_event_path(@course, @course_event), notice: "Already signed up" }
+      else
+        @userCourseDay = UserCourseDay.new(user: current_user, course_day: @course_day)
+
+        if @userCourseDay.save
+          format.html { redirect_to course_course_event_path(@course, @course_event) }
+        else
+          format.html { redirect_to course_course_event_path(@course, @course_event), notice: "Signing up failed" }
+        end
+      end
+    end
+  end
+
+
+  def signed?
+    event_days = @course_day.course_event.course_days
+
+    event_days.each do |day|
+      begin
+        UserCourseDay.find_by(user: current_user, course_day: day)
+        return true
+      rescue Mongoid::Errors::DocumentNotFound
+      end
+    end
+
+    return false
+  end
+
+  helper_method :signed?
+
+
+  def signedToCourse?
+    begin
+      UserCourse.find_by(user: current_user, course: @course)
+    rescue Mongoid::Errors::DocumentNotFound
+      return false
+    end
+
+    return true
+  end
+
+
 
   # POST /course_days
   # POST /course_days.json
