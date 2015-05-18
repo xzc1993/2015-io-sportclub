@@ -18,4 +18,19 @@ class CalendarController < ApplicationController
   def new
     @item = Item.new
   end
+
+
+  def signed?(course_day)
+
+    begin
+      UserCourseDay.find_by(user: current_user, course_day: course_day)
+    rescue Mongoid::Errors::DocumentNotFound
+      return false
+    end
+
+
+    return true
+  end
+
+  helper_method :signed?
 end

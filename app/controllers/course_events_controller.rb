@@ -23,6 +23,40 @@ class CourseEventsController < ApplicationController
   def edit
   end
 
+
+
+  def signed?
+    event_days = @course_event.course_days
+
+    event_days.each do |day|
+      begin
+        UserCourseDay.find_by(user: current_user, course_day: day)
+        return true
+      rescue Mongoid::Errors::DocumentNotFound
+      end
+    end
+
+    return false
+  end
+
+  helper_method :signed?
+
+
+  def signedToCourse?
+    begin
+      UserCourse.find_by(user: current_user, course: @course)
+    rescue Mongoid::Errors::DocumentNotFound
+      return false
+    end
+
+    return true
+  end
+
+  helper_method :signedToCourse?
+
+
+
+
   # POST /course_events
   # POST /course_events.json
   def create

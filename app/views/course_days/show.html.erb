@@ -2,7 +2,7 @@
 
 <p>
   <strong>Course:</strong>
-  <%= link_to @course_day.course.name, @course_day.course %>
+  <%= link_to @course.name, @course %>
 </p>
 
 <p>
@@ -20,5 +20,4 @@
   <%= @course_day.time_end %>
 </p>
 
-<%= link_to 'Edit', edit_course_course_day_path(@course_day.course, @course_day) %> |
-<%= link_to 'Back', course_course_days_path(@course_day.course) %>
+<%= link_to 'Edit', edit_course_course_event_course_day_path(@course, @course_event, @course_day) %> |

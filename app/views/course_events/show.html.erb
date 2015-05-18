@@ -3,6 +3,13 @@
 
 
 <h1><%= @course.name %></h1>
+
+<p>
+  <% if signed? %>
+      You are signed up to this event!
+  <%end %>
+</p>
+
 <h2><%= @course_event.title %></h2>
 
 <h3>Event days:</h3>
@@ -26,6 +33,9 @@
             <td><%= course_day.time_end %></td>
             <td><%= link_to 'Edit', edit_course_course_event_course_day_path(@course, @course_event, course_day) %></td>
             <td><%= link_to 'Destroy', [@course, @course_event, course_day], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if signedToCourse? and !signed? %>
+                <td><a href="/courses/<%= @course.id %>/events/<%= @course_event.id %>/days/<%= course_day.id %>/sign">Sign</a></td>
+            <% end %>
           </tr>
       <% end %>
       </tbody>

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'calendar/index'
 
   resources :courses do
@@ -20,6 +19,7 @@ Rails.application.routes.draw do
 get 'calendar', to: 'calendar#show'
 
   get 'courses/:id/sign', to: 'courses#sign'
+  get 'courses/:course_id/events/:course_event_id/days/:id/sign', to: 'course_days#sign'
 
 
 end
