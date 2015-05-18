@@ -19,5 +19,7 @@ Rails.application.routes.draw do
 
 get 'calendar', to: 'calendar#show'
 
+  get 'courses/:id/sign', to: 'courses#sign'
+
 
 end

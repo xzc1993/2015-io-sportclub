@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  course: 
+  dateSigned: 2015-05-18 07:20:20
+
+two:
+  user: 
+  course: 
+  dateSigned: 2015-05-18 07:20:20
