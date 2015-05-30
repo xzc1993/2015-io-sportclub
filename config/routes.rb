@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'groups/index'
+
+  get 'groups/new'
+
+  get 'groups/create'
+
+  get 'groups/destroy'
+
+  get 'groups/show'
+
+  get 'groups/edit'
+
+  get 'groups/update'
+
   get 'calendar/index'
 
   resources :courses do
@@ -18,6 +32,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   resources :users
+  resources :groups
   resources :session
 
 get 'calendar', to: 'calendar#show'

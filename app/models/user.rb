@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include ActiveModel::SecurePassword
   include Mongoid::Paperclip
-  
+  has_and_belongs_to_many :groups
   before_save { email.downcase! }
 
   field :username, :type => String
