@@ -9,6 +9,7 @@ class User
   field :email, :type => String
   field :phone, :type => String
   field :password_digest, :type => String
+  field :verified, :type => Boolean
 
   has_mongoid_attached_file :photo,
                             :styles => { :small => '100x100#', :medium => '250x250#', :large => '500x500#' }

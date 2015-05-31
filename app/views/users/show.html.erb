@@ -30,7 +30,7 @@
 <% end %>
 
 <div>
-	<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary' %>
-	<%= link_to 'Back', '/', class: 'btn btn-primary' %>
+	<%= link_to content_tag(:div, 'Edit', class: 'btn btn-primary'), edit_user_path(@user) %>
+	<%= link_to content_tag(:div, 'Back', class: 'btn btn-primary'), '/'%>
 </div>
 </div>

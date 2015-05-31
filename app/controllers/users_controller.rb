@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 		current_params = user_params
 		current_params[:groups] = Group.find( current_params[:groups])
 		@user = User.new(current_params)
+		@user.verified = false
 		if @user.save
 			redirect_to @user
 		else
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		logger.fatal is_current_user_member_of?('admi2n')
 		@user = User.find( params[:id])
 		@groups = Group.all		
 	end
@@ -34,6 +34,12 @@ class UsersController < ApplicationController
 		else
 			render 'session/new'
 		end
+	end
+
+	def verify
+	  @user = User.find( params[:id])
+	  @user.verified = true
+	  @user.save()
 	end
 
 	def update
@@ -58,6 +64,8 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
+		user = User.find( params[:id])
+		user.delete()
 	end
 
   	private

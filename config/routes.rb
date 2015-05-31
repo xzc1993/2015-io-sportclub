@@ -1,21 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'groups/index'
-
-  get 'groups/new'
-
-  get 'groups/create'
-
-  get 'groups/destroy'
-
-  get 'groups/show'
-
-  get 'groups/edit'
-
-  get 'groups/update'
-
-  get 'calendar/index'
-
   resources :courses do
     resources :course_events, path: 'events' do
       resources :course_days, path: 'days'
@@ -32,6 +16,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   resources :users
+  get 'users/:id/verify', to: 'users#verify', as: 'verify_user'
   resources :groups
   resources :session
 
