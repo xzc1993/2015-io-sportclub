@@ -22,8 +22,11 @@ module SessionHelper
 
 	
 	def is_current_user_member_of?(group)
-		user = current_user
-		is_user_member_of?( user, group)
+		if not current_user
+			false
+		else
+			is_user_member_of?( current_user, group)
+		end
 	end
 
 	def is_user_member_of?(user, group)
