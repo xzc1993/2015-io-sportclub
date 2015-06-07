@@ -11,13 +11,23 @@
         <li><%= link_to 'Courses', courses_path %></li>
         <li><%= link_to 'Warehouse', items_path %></li>
         <li><%= link_to 'Calendar', calendar_path %></li>
+        <% if is_current_user_member_of?('admin') %>
+          <li><%= link_to 'Users', users_path %></li>
+          <li><%= link_to 'Groups', groups_path %></li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <% if logged_in? %>
-          <%= link_to current_user.username + " Log out", '/session/destroy', method: "delete" %>
+        <% if logged_in? %>
+          <li>
+            <%= link_to current_user.username, user_path(current_user) %>
+          </li>
+          <li>
+            <%= link_to "Log out", '/session/destroy', method: "delete" %>              
+          </li>
           <% else %>
-          <%= link_to "Log in", '/session/new', method: "get" %>  
+          <li>
+            <%= link_to "Log in", '/session/new', method: "get" %>
+          </li>  
           <% end %>
         </li>
       </ul>

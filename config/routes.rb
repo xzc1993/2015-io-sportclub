@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'calendar/index'
 
   resources :courses do
@@ -17,9 +18,11 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   resources :users
+  get 'users/:id/verify', to: 'users#verify', as: 'verify_user'
+  resources :groups
   resources :session
 
-get 'calendar', to: 'calendar#show'
+  get 'calendar', to: 'calendar#show'
 
   get 'courses/:id/sign', to: 'courses#sign'
   get 'courses/:course_id/events/:course_event_id/days/:id/sign', to: 'course_days#sign'

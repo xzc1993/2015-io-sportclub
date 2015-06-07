@@ -22,7 +22,15 @@
   <br/>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', '/' %>
+<strong>Groups:</strong><br/>
+	<% @user.groups.each do |group| %>
+	<p>
+		<strong><%= group.name %></strong>
+	</p>
+<% end %>
 
+<div>
+	<%= link_to content_tag(:div, 'Edit', class: 'btn btn-primary'), edit_user_path(@user) %>
+	<%= link_to content_tag(:div, 'Back', class: 'btn btn-primary'), '/'%>
+</div>
 </div>

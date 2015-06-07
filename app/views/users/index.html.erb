@@ -21,9 +21,12 @@
                 <td><%= user.username %></td>
                 <td><%= user.email %></td>
                 <td>
-                    <%= link_to 'Show', user %>
-                    <%= link_to 'Edit', edit_user_path(user) %>
-                    <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to content_tag(:div, 'Show', class: 'btn btn-primary'), user_path(user) %>
+                    <%= link_to content_tag(:div, 'Edit', class: 'btn btn-primary'), edit_user_path(user) %>
+                    <%= link_to content_tag(:div, 'Delete', class: 'btn btn-primary'), user, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% if not user.verified %>
+                    <%= link_to content_tag(:div, 'Verify', class: 'btn btn-warning'), verify_user_path(user), data: { confirm: 'Are you sure?' } %>   
+                    <% end %>                 
                 </td>
             </tr>
         <% end %>
@@ -32,5 +35,5 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to content_tag(:div, 'New user', class: 'btn btn-primary'), new_user_path %>
 </div>
