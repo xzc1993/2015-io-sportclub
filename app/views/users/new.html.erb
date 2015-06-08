@@ -27,7 +27,14 @@
     <%= f.label :photo %> <br/>
     <%= f.file_field :photo %>
   </p> 
-  
+
+  <%= f.label "Groups" %> <br/> 
+  <% @groups.each do |group| %>
+    <p>
+<input value="<%= group.id.to_s %>" name="user[groups][]" id="user_groups_group<%= group.id.to_s %>" type="checkbox"><%= group.name %>
+    </p>
+  <% end %>
+
   <p>
     <%= f.submit :class => 'btn btn-default' %>
   </p>
