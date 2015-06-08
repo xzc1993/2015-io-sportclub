@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'admin/admin_panel'
+  post 'admin/update'
+
   get 'calendar/index'
 
   resources :courses do
@@ -26,6 +29,5 @@ Rails.application.routes.draw do
 
   get 'courses/:id/sign', to: 'courses#sign'
   get 'courses/:course_id/events/:course_event_id/days/:id/sign', to: 'course_days#sign'
-
 
 end
