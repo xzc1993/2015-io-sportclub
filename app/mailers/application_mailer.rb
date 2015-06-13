@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "2015-io-sportclub@io.com"
+  default from: "io_sportclub@interia.pl"
   layout 'mailer'
 end

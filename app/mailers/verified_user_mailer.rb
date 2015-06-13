@@ -1,8 +1,8 @@
 class VerifiedUserMailer < ApplicationMailer
 
 	def send_verification_mail(user)
+	  logger.info user.email
 	  @user = user
-	  sdcsdfsdsdfsdsdf()
-	  mail(to: @user.email, subject: '[2015-io-sportclub] User verification')
+	  mail(to: @user.email,  content_type: "text/html", subject: '[2015-io-sportclub] User verification')
 	end
 end

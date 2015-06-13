@@ -38,7 +38,9 @@ class UsersController < ApplicationController
 
 	def verify
 	  @user = User.find( params[:id])
-	  @user.verified = true
+	  logger.info @user.email
+	  VerifiedUserMailer.send_verification_mail(@user).deliver_now
+	  #@user.verified = true
 	  @user.save()
 	end
 
