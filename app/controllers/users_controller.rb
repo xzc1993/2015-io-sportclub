@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 	  @user = User.find( params[:id])
 	  logger.info @user.email
 	  VerifiedUserMailer.send_verification_mail(@user).deliver_now
-	  #@user.verified = true
+	  @user.verified = true
 	  @user.save()
 	end
 
