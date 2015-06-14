@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :rent]
 
   # GET /items
   # GET /items.json
@@ -60,6 +60,41 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def rent
+    respond_to do |format|
+
+      if !logged_in?
+        format.html { redirect_to new_session_path, notice: "You must log in" }
+      else
+
+        if rented?
+          format.html { redirect_to item_path(@item), notice: "Item in your possesions" }
+        else
+          @userItem = UserItem.new(user: current_user, item: @item)
+
+          if @userItem.save
+            format.html { redirect_to item_path(@item) }
+          else
+            format.html { redirect_to item_path(@item), notice: "Order rejected" }
+          end
+        end
+      end
+    end
+
+  end
+
+  def rented?
+    begin
+      UserItem.find_by(user: current_user, item: @item)
+    rescue Mongoid::Errors::DocumentNotFound
+      return false
+    end
+
+    return true
+  end
+
+  helper_method :rented?
 
   private
     # Use callbacks to share common setup or constraints between actions.

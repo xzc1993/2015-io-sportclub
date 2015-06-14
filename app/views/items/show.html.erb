@@ -2,6 +2,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <% if rented? %>
+    You have rented this item!
+  <% else %>
+    You can rent this item.
+    <a href="/items/<%= @item.id %>/rent">RENT IT!</a>
+  <% end %>
+
+</p>
+
+
+<p>
   <strong>Name:</strong>
   <%= @item.name %>
 </p>
