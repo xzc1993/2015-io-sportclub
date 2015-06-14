@@ -18,7 +18,7 @@ class AdminController < ApplicationController
         format.html { redirect_to @user, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: edit_user_path(@user) }
       else
-        format.html { render :edit }
+        format.html { redirect_to admin_admin_panel_path, notice: 'User must belong to at least one group' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -26,6 +26,7 @@ class AdminController < ApplicationController
 
   private
   def user_params
+    params[:user] ||= {}
     params[:user][:groups] ||= []
     params.require(:user).permit(:username, groups: [])
   end
