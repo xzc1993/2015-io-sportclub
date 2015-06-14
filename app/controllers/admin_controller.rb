@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+
   def admin_panel
   end
 

@@ -30,8 +30,9 @@ class UsersController < ApplicationController
 
 	def show
 		if logged_in?
-			@user = current_user
-		else
+			#@user = current_user
+		  @user = User.find(params[:id])
+    else
 			render 'session/new'
 		end
 	end
