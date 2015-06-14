@@ -1,6 +1,0 @@
-== README
-
-Będziecie musieli sobie wygenerować plik mongoid.yml ->
-
-http://mongoid.org/en/mongoid/docs/installation.html#installation
-
