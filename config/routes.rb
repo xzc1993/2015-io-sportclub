@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   get 'courses/:id/sign', to: 'courses#sign'
   get 'courses/:course_id/events/:course_event_id/days/:id/sign', to: 'course_days#sign'
 
+  get 'items/:id/rent', to: 'items#rent'
+
 end
