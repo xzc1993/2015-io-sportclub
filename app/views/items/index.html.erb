@@ -24,15 +24,28 @@
         <td><%= item.name %></td>
         <td><%= item.quantity %></td>
         <td><%= item.category %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to  item do %>
+              <span class="glyphicon glyphicon-new-window"></span>
+          <% end %>
+
+          <%= link_to edit_item_path(item) do %>
+              <span class="glyphicon glyphicon-edit"></span>
+          <% end %>
+
+          <%= link_to item, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+  <h3>
 
-<%= link_to 'New Item', new_item_path %>
+    <%= link_to new_item_path do %>
+        <span class="glyphicon glyphicon-plus">New Item</span>
+    <% end %>
+  </h3>
 </div>
