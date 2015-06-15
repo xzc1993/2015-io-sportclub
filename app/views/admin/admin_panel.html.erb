@@ -1,0 +1,23 @@
+
+<div class="container">
+  <p id="notice" style="color: red;"><%= notice %></p>
+
+  <%= form_tag :controller => 'admin', :action => 'update', :method => 'post' do %>
+    <div class="field">
+        <%= label_tag :user_id, 'User' %>
+        <%= select_tag :user_id, options_for_select(User.all.map { |u| [ u.username, u.id ]}) %>
+    </div>
+
+    <div class="field">
+      <% Group.all.each do |group| %>
+          <p>
+            <input value="<%= group.id.to_s %>" name="user[groups][]" id="user_groups_group<%= group.id.to_s %>" type="checkbox"><%= group.name %>
+          </p>
+      <% end %>
+
+      <p>
+        <%= submit_tag ('Update user!'), :class => 'btn btn-default' %>
+      </p>
+    </div>
+  <% end %>
+</div>
