@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   	resources :event_days
   end
   
-  root 'events#index'
+  root 'calendar#show'
 
   get 'sessions/new'
 

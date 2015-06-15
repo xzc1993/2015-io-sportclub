@@ -37,5 +37,4 @@ module SessionHelper
 		end
 	end
 
-
 end

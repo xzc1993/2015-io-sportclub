@@ -1,51 +1,58 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Course details</h1>
 
-<h1>
-  <%= @course.name %>
-</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @course.name %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <% if !@course.photo.nil? %>
+          <%= image_tag @course.photo.url(:large), :size => '500x500' %>
+        <% end %>
+      </div>
+      <div class="col-sm-6">
+        <%= @course.description %>
 
-<p>
-  <% if signed? %>
-    You are signed up!
-  <% else %>
-    You are not signed up to this course.
-    <a href="/courses/<%= @course.id %>/sign">Sign up!</a>
+
+        <h5>
+          <% if signed? %>
+              You are signed up!
+          <% else %>
+              You are not signed up to this course.
+              <a href="/courses/<%= @course.id %>/sign">Sign up!</a>
+          <% end %>
+        </h5>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>Events</h3>
+
+<div class="list-group">
+  <% @course.course_events.each do |course_event| %>
+      <%= link_to course_event.title, course_course_event_path(@course, course_event), :class => 'list-group-item' %>
   <% end %>
 
-</p>
+    <%= link_to new_course_course_event_path(@course), :class => 'list-group-item' do %>
+        <span class="glyphicon glyphicon-plus">New Course Event</span>
+    <% end %>
+  </div>
 
+</div>
 
-<% if !@course.photo.nil? %>
-<p>
-  <%= image_tag @course.photo.url(:large) %>
-</p>
+<h3>
+<%= link_to edit_course_path(@course) do %>
+    <span class="glyphicon glyphicon-edit">Edit Course</span>
 <% end %>
+</h3>
 
-
-<p>
-  <%= @course.description %>
-</p>
-
-<p>
-  <h3>Events:</h3>
-<% if @course.course_events.blank? %>
-    No course events.
-    <% else %>
-    <table>
-
-      <tbody>
-      <% @course.course_events.each do |course_event| %>
-          <tr>
-            <td width="50%"><%= link_to course_event.title, course_course_event_path(@course, course_event) %></td>
-            <td width="25%"><%= link_to 'Edit', edit_course_course_event_path(@course, course_event) %></td>
-            <td><%= link_to 'Destroy', course_course_event_path(@course, course_event), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-<% end %>
-</p>
-
-<%= link_to 'New Course event', new_course_course_event_path(@course) %><br>
-<%= link_to 'Edit', edit_course_path(@course) %>
+<h3>
+  <%= link_to course_path(@course), method: :delete, data: { confirm: 'Are you sure?' }  do %>
+      <span class="glyphicon glyphicon-remove">Delete Course</span>
+  <% end %>
+</h3>

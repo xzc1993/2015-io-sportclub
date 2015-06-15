@@ -1,47 +1,74 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Course Event details</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @course.name %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <% if !@course.photo.nil? %>
+            <%= image_tag @course.photo.url(:large), :size => '500x500' %>
+        <% end %>
+      </div>
+      <div class="col-sm-6">
+        <%= @course.description %>
 
 
-<h1><%= @course.name %></h1>
+        <h5>
+          <% if signed? %>
+              You are signed up to this event!
+          <% end %>
+        </h5>
 
-<p>
-  <% if signed? %>
-      You are signed up to this event!
-  <%end %>
-</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h2><%= @course_event.title %></h2>
+<h3>Days</h3>
 
-<h3>Event days:</h3>
-  <% if @course_event.course_days.blank? %>
-      No course event days.
-  <% else %>
-    <table>
-      <thead>
-      <tr>
-        <th width="25%">Date</th>
-        <th width="70%" colspan="2">Time</th>
-        <th colspan="3"></th>
-      </tr>
-      </thead>
+<div class="list-group">
 
-      <tbody>
-      <% @course_event.course_days.each do |course_day| %>
-          <tr>
-            <td><%= course_day.date %></td>
-            <td><%= course_day.time_begin %></td>
-            <td><%= course_day.time_end %></td>
-            <td><%= link_to 'Edit', edit_course_course_event_course_day_path(@course, @course_event, course_day) %></td>
-            <td><%= link_to 'Destroy', [@course, @course_event, course_day], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% if signedToCourse? and !signed? %>
-                <td><a href="/courses/<%= @course.id %>/events/<%= @course_event.id %>/days/<%= course_day.id %>/sign">Sign</a></td>
-            <% end %>
-          </tr>
+
+  <% @course_event.course_days.each do |course_day| %>
+
+    <span class="list-group-item">
+      <%= course_day.date %>, <%= course_day.time_begin %> - <%= course_day.time_end %>
+
+      <% if signedToCourse? and !signed? %>
+        <a href="/courses/<%= @course.id %>/events/<%= @course_event.id %>/days/<%= course_day.id %>/sign">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
       <% end %>
-      </tbody>
-    </table>
-<% end %>
-</p>
 
-<%= link_to 'New Course event day', new_course_course_event_course_day_path(@course, @course_event) %><br>
-<%= link_to 'Edit', edit_course_course_event_path(@course, @course_event) %>
+      <%= link_to edit_course_course_event_course_day_path(@course, @course_event, course_day) do %>
+          <span class="glyphicon glyphicon-edit"></span>
+      <% end %>
+
+      <%= link_to [@course, @course_event, course_day], method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <span class="glyphicon glyphicon-remove"></span>
+      <% end %>
+    </span>
+  <% end %>
+
+  <%= link_to new_course_course_event_course_day_path(@course, @course_event), :class => 'list-group-item' do %>
+      <span class="glyphicon glyphicon-plus">New Course Event Day</span>
+  <% end %>
+</div>
+
+</div>
+
+<h3>
+  <%= link_to edit_course_course_event_path(@course, @course_event) do %>
+      <span class="glyphicon glyphicon-edit">Edit Course Event</span>
+  <% end %>
+</h3>
+
+<h3>
+  <%= link_to course_course_event_path(@course, @course_event), method: :delete, data: { confirm: 'Are you sure?' }  do %>
+      <span class="glyphicon glyphicon-remove">Delete Course Event</span>
+  <% end %>
+</h3>

@@ -1,6 +1,6 @@
 class CalendarController < ApplicationController
   def index
-    @events = Events.all
+    @events = Event.all
     @items = Item.all
     @courseDays = CourseDay.all
   end
@@ -33,4 +33,6 @@ class CalendarController < ApplicationController
   end
 
   helper_method :signed?
+
 end
+

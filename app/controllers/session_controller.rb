@@ -7,7 +7,7 @@ class SessionController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to user
+      redirect_to calendar_path
     else
       render 'new'
     end

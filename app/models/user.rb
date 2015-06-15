@@ -27,7 +27,7 @@ class User
                     format: { with: VALID_PHONE_REGEX },
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }, on: :create
-  validate :group_cannot_be_empty_or_nil
+ # validate :group_cannot_be_empty_or_nil
 
   def group_cannot_be_empty_or_nil
     self.errors.add(:base, 'User must belong to at least one group.' ) if self.groups.blank?
